@@ -6,9 +6,9 @@ const Chat = () => {
   const [message, setMessage] = React.useState([]);
   const addMessages = (msg) => {
     setMessage([...message, msg])
-    console.log(message)
 
   }
+  console.log(message)
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -28,11 +28,21 @@ const Chat = () => {
         <div className="chat-messages">
           {
             message.map((res) => {
-              return (
-                <div className="message-container sent">
-                  <p>Hello!</p>
-                </div>
-              )
+              if (localStorage.loginUser === localStorage.sender) {
+                return (
+                  <div className="message-container sent" key={res}>
+                  <p>{res}</p>
+                </div> 
+                  )
+              }
+              else{
+                return (
+                  <div className="message-container received">
+                  <p>{res}</p>
+                </div> 
+                  )
+              }
+              
             })
           }
           {/* <div className="message-container received">
