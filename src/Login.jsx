@@ -5,44 +5,63 @@ import axios from 'axios'
 const Login = () => {
     const navigate = useNavigate();
     const [user, setUser] = React.useState()
-    const [allData, setAllData] = React.useState([])
+    // const [allData, setAllData] = React.useState([])
 
-    
 
-    const getLoginData = async () => {
-        // username : 'admin',
-        // password : 'password'
-        await axios.get('http://127.0.0.1:8000/register/').then(res => {
-            setAllData(res.data)
-            console.log(res.data)
-            })
-    }
-    React.useEffect(() => {
-        getLoginData()
-    }, [])
 
-    const checkAuth = (e) => {
+    // const getLoginData = async () => {
+    //     // username : 'admin',
+    //     // password : 'password'
+    //     await axios.get('http://127.0.0.1:8000/register/').then(res => {
+    //         setAllData(res.data)
+    //         console.log(res.data)
+    //         })
+    // }
+    // React.useEffect(() => { 
+    //     getLoginData()
+    // }, [])
+
+    const checkAuth = async (e) => {
         e.preventDefault();
-        // const matchingAcc = allData.find((res) => res.username === authData.username && res.password === authData.password);
-        // if (authData.text === allData[0].username && authData.password === allData[0].password) {
-            for(let i=0;i< allData.length;i++){
-                // const res = allData[i]
-                if (allData[i].username===authData.username && allData[i].password===authData.password) {
-                    console.log("Login Successful")
-                    setUser(authData.text)
-                    localStorage.setItem('loginUser', authData.username)
-                    localStorage.setItem('sender',allData[i].username)
-                    console.log(localStorage.user)
-                    navigate("/chat");
-                }
+        await axios.get('http://127.0.0.1:8000/register/').then(res => {
+         const matchingAcc = res.data.find((res) => res.username === authData.username && res.password === authData.password);
+            if (matchingAcc) {
+                console.log("successful")
+                // localStorage.setItem('sender', matchingAcc.id)
+                localStorage.setItem('loginUser', matchingAcc.id)
+                console.log("LOginUSer"+localStorage.loginUser)
+                // setUser(authData.text)
+                navigate("/chat");
             }
-            // console.log(res.username)
-            // console.log(matchingAcc)
-        
+            // setAllData(res.data)
+            // console.log(res.data)
+        })
+
+        // const matchingAcc = allData.find((res) => res.username === authData.username && res.password === authData.password);
+        // if (matchingAcc) {
+        //     console.log("successful")
+        //     setUser(authData.text)
+        //     navigate("/chat");
+        // }
+        // if (authData.text === allData[0].username && authData.password === allData[0].password) {
+        // for(let i=0;i< allData.length;i++){
+        //     // const res = allData[i]
+        //     if (allData[i].username===authData.username && allData[i].password===authData.password) {
+        //         console.log("Login Successful")
+        //         setUser(authData.text)
+                // localStorage.setItem('loginUser', authData.username)
+        //         localStorage.setItem('sender',allData[i].username)
+        //         console.log(localStorage.user)
+        //         navigate("/chat");
+        //     }
+        // }
+        // console.log(res.username)
+        // console.log(matchingAcc)
+
     }
 
     const [authData, setAuthData] = React.useState({});
-    console.log(authData)
+    // console.log(authData)
 
     return (
         <div className="App">
