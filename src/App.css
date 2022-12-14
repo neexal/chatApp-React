@@ -1,5 +1,5 @@
 .chat-container {
-  width: 99vw;
+  width: 100vw;
   height: 100vh;
   margin: 0;
   display: flex;
@@ -37,14 +37,14 @@
 
 .message-container.sent {
   align-self: flex-end;
-  background-color: #e74c3c;
+  background-color: #3c78e7;
   color: #ffffff;
   width: 50%;
 }
 
 .message-container.received {
   align-self: flex-start;
-  background-color: #2ecc71;
+  background-color: #1a247e;
   color: #ffffff;
   width: 50%;
 }
@@ -74,4 +74,28 @@
   border: none;
   font-size: 16px;
   cursor: pointer;
+}
+
+/* displaying  */
+.rowC{
+  display:flex;
+   flex-direction:row;
+   width: 100vw;
+  }
+.rowC .leftColumn{
+  width: 15%;
+}
+
+.rowC .rightColumn{
+  width: 85%;
+}
+
+ul{
+  list-style-type: none;
+  margin-right: 20px;
+}
+ul .listItem{
+  margin: 20px 0;
+  padding: 20px 10px;
+  border: 0.5px solid #c7c8cd;
 }
