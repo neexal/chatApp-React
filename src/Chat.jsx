@@ -33,6 +33,7 @@ const Chat = () => {
     }
     else{
       recipient = 1
+      localStorage.setItem('recipient',1)
     }
 
     try {
